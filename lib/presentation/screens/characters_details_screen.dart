@@ -26,7 +26,7 @@ class CharactersDetailsScreen extends StatelessWidget {
         ),
         background: Hero(
           tag: character.id!,
-          child: Image.network(
+          child: Image.asset(
             character.imageUrl!,
             fit: BoxFit.cover,
           ),
@@ -122,9 +122,9 @@ class CharactersDetailsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      characterInfo('FirstName : ', character.firstName!),
+                      characterInfo('FirstName : ', character.fullName!),
                       buildDivider(260),
-                      characterInfo('LastName : ', character.family!),
+                      characterInfo('LastName : ', character.title!),
                       buildDivider(260),
                       SizedBox(
                         height: 50,

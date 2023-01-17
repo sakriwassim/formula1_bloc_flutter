@@ -49,7 +49,9 @@ class CharacterItem extends StatelessWidget {
                   child: Center(
                     child: CircleImage(
                       height: 60,
-                      image: "",
+                      image: character.imageUrl.toString(),
+                      // "assets/images/playerimages/Carlos Sainz.jpg",
+                      //character.imageUrl.toString(),
                       width: 60,
                     ),
                   ),
@@ -71,7 +73,7 @@ class CharacterItem extends StatelessWidget {
                               character.fullName.toString(),
                             ),
                             Text(
-                              character.fullName.toString(),
+                              character.title.toString(),
                             ),
                           ],
                         ),

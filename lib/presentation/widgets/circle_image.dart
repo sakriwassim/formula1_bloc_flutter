@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../size_config.dart';
-import 'image_cached_internet.dart';
 
 class CircleImage extends StatelessWidget {
   String image;
@@ -21,11 +20,13 @@ class CircleImage extends StatelessWidget {
       height: getProportionateScreenHeight(height),
       width: getProportionateScreenWidth(width),
       child: CircleAvatar(
+        radius: 100,
         child: ClipOval(
-          child: ImageCachedInternet(
-            height: MediaQuery.of(context).size.height,
-            imageUrl: '$image',
-            width: MediaQuery.of(context).size.width,
+          child: Image.asset(
+            image,
+            fit: BoxFit.cover,
+            width: 80,
+            height: 80,
           ),
         ),
       ),
