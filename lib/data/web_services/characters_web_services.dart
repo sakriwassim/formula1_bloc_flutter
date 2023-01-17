@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/services.dart';
 
 import '../../constants/strings.dart';
+import '../models/characters.dart';
 
 class CharactersWebServices {
   late Dio dio;
@@ -17,15 +21,22 @@ class CharactersWebServices {
   }
 
   Future<List<dynamic>> getAllCharacters() async {
-    try {
-      Response response = await dio.get('characters');
-      print(response.data.toString());
-      return response.data;
-    } catch (e) {
-      print(e.toString());
-      return [];
-    }
+    final String response = await rootBundle.loadString('assets/sample.json');
+    final data = await json.decode(response);
+    return data;
+    // ...
   }
+
+  // Future<List<dynamic>> getAllCharacters() async {
+  //   try {
+  //     Response response = await dio.get('characters');
+  //     print(response.data.toString());
+  //     return response.data;
+  //   } catch (e) {
+  //     print(e.toString());
+  //     return [];
+  //   }
+  // }
 
   Future<List<dynamic>> getCharacterQuotes(String charName) async {
     try {

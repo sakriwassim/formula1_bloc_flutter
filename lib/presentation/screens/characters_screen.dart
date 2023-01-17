@@ -1,9 +1,7 @@
 import 'package:block_breakingbad_flutter/business_logic/cubit/characters_cubit.dart';
 import 'package:block_breakingbad_flutter/constants/my_colors.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
@@ -30,17 +28,22 @@ class _CharactersScreenState extends State<CharactersScreen> {
   }
 
   Widget _buildSearchField() {
-    return TextField(
-      controller: _searchTextController,
-      cursorColor: MyColors.myGrey,
-      decoration: InputDecoration(
-          hintText: "Find a character",
-          border: InputBorder.none,
-          hintStyle: TextStyle(color: MyColors.myGrey, fontSize: 18)),
-      style: TextStyle(color: MyColors.myGrey, fontSize: 18),
-      onChanged: (searchedCharacter) {
-        addSearchedFOrItemsToSearchedList(searchedCharacter);
-      },
+    return Row(
+      children: [
+        TextField(
+          controller: _searchTextController,
+          cursorColor: MyColors.myGrey,
+          decoration: InputDecoration(
+              hintText: "Find a character",
+              border: InputBorder.none,
+              hintStyle: TextStyle(color: MyColors.myGrey, fontSize: 18)),
+          style: TextStyle(color: MyColors.myGrey, fontSize: 18),
+          onChanged: (searchedCharacter) {
+            addSearchedFOrItemsToSearchedList(searchedCharacter);
+          },
+        ),
+        InkWell(onTap: () => _stopSearching(), child: Icon(Icons.close)),
+      ],
     );
   }
 
@@ -114,28 +117,22 @@ class _CharactersScreenState extends State<CharactersScreen> {
   }
 
   Widget buildLoadedListWidgets() {
-    return Container(
-      color: MyColors.myGrey,
-      child: buildCharactersList(),
-    );
+    return buildCharactersList();
   }
 
   Widget buildCharactersList() {
-    return GridView.builder(
-        shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200,
-            childAspectRatio: 1 / 2,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 20),
+    return ListView.builder(
         itemCount: _searchTextController.text.isEmpty
             ? allCharacters.length
             : searchedForCharacters.length,
         itemBuilder: (BuildContext ctx, index) {
           return Container(
+              color: Color.fromARGB(255, 255, 255, 255),
+              //  height: 50,
+              //  width: 50,
               alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: Colors.amber, borderRadius: BorderRadius.circular(15)),
+              // decoration: BoxDecoration(
+              //     color: Colors.amber, borderRadius: BorderRadius.circular(15)),
               child: CharacterItem(
                   character: _searchTextController.text.isEmpty
                       ? allCharacters[index]
@@ -158,10 +155,52 @@ class _CharactersScreenState extends State<CharactersScreen> {
     );
   }
 
+  Widget buildheadWigdet() {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(30),
+            topLeft: Radius.circular(30),
+          )),
+      height: 70,
+      child: Center(
+          child: Text(
+        "Top 10 ranking 2021",
+        style: TextStyle(color: MyColors.myGrey, fontSize: 25),
+        //style: ,
+      )),
+    );
+  }
+
+  Widget builtopWigdet() {
+    return Container(
+      height: 100,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Row(
+          children: [
+            Expanded(flex: 1, child: Image.asset("assets/images/Avatar.png")),
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+                flex: 5,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [Text("Good morning,"), Text("data")],
+                ))
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget buildNoInternetWidget() {
     return Center(
       child: Container(
-        color: Colors.white,
+        color: MyColors.myGrey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -189,28 +228,39 @@ class _CharactersScreenState extends State<CharactersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.myGrey,
-      appBar: AppBar(
-        backgroundColor: MyColors.myYellow,
-        title: _isSearching ? _buildSearchField() : _buildAppBarTitle(),
-        actions: _buildAppBarActions(),
-        leading: _isSearching
-            ? const BackButton(
-                color: MyColors.myGrey,
-              )
-            : Container(),
-      ),
-      body: OfflineBuilder(
-          connectivityBuilder: (BuildContext context,
-              ConnectivityResult connectivity, Widget child) {
-            final bool connected = connectivity != ConnectivityResult.none;
+      // appBar: AppBar(
+      //   backgroundColor: MyColors.myYellow,
+      //   title: _isSearching ? _buildSearchField() : _buildAppBarTitle(),
+      //   actions: _buildAppBarActions(),
+      //   leading: _isSearching
+      //       ? const BackButton(
+      //           color: MyColors.myGrey,
+      //         )
+      //       : Container(),
+      // ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            _isSearching ? _buildSearchField() : builtopWigdet(),
+            buildheadWigdet(),
+            Expanded(
+              child: OfflineBuilder(
+                  connectivityBuilder: (BuildContext context,
+                      ConnectivityResult connectivity, Widget child) {
+                    final bool connected =
+                        connectivity != ConnectivityResult.none;
 
-            if (connected) {
-              return buildBlockWidget();
-            } else {
-              return buildNoInternetWidget();
-            }
-          },
-          child: showLoadingIndicator()),
+                    if (connected) {
+                      return buildBlockWidget();
+                    } else {
+                      return buildNoInternetWidget();
+                    }
+                  },
+                  child: showLoadingIndicator()),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
