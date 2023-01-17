@@ -39,44 +39,48 @@ class CharacterItem extends StatelessWidget {
           padding: EdgeInsets.symmetric(
             horizontal: getProportionateScreenWidth(10),
           ),
-          child: Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Center(
-                  child: CircleImage(
-                    height: 60,
-                    image: "",
-                    width: 60,
+          child: InkWell(
+            onTap: () => Navigator.pushNamed(context, characterDetailScreens,
+                arguments: character),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Center(
+                    child: CircleImage(
+                      height: 60,
+                      image: "",
+                      width: 60,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(width: getProportionateScreenWidth(10)),
-              Expanded(
-                flex: 4,
-                child: SizedBox(
-                  // height: 150,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        vertical: getProportionateScreenHeight(10)),
-                    child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            character.fullName.toString(),
-                          ),
-                          Text(
-                            character.fullName.toString(),
-                          ),
-                        ],
+                SizedBox(width: getProportionateScreenWidth(10)),
+                Expanded(
+                  flex: 4,
+                  child: SizedBox(
+                    // height: 150,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: getProportionateScreenHeight(10)),
+                      child: Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              character.fullName.toString(),
+                            ),
+                            Text(
+                              character.fullName.toString(),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
