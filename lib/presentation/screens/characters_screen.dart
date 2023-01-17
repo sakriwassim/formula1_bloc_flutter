@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
+import '../../authentification/controllers/auth_controller.dart';
 import '../../data/models/characters.dart';
 import '../widgets/character_item.dart';
 
@@ -27,81 +28,81 @@ class _CharactersScreenState extends State<CharactersScreen> {
     super.initState();
   }
 
-  Widget _buildSearchField() {
-    return Row(
-      children: [
-        TextField(
-          controller: _searchTextController,
-          cursorColor: MyColors.myGrey,
-          decoration: InputDecoration(
-              hintText: "Find a character",
-              border: InputBorder.none,
-              hintStyle: TextStyle(color: MyColors.myGrey, fontSize: 18)),
-          style: TextStyle(color: MyColors.myGrey, fontSize: 18),
-          onChanged: (searchedCharacter) {
-            addSearchedFOrItemsToSearchedList(searchedCharacter);
-          },
-        ),
-        InkWell(onTap: () => _stopSearching(), child: Icon(Icons.close)),
-      ],
-    );
-  }
+  // Widget _buildSearchField() {
+  //   return Row(
+  //     children: [
+  //       TextField(
+  //         controller: _searchTextController,
+  //         cursorColor: MyColors.myGrey,
+  //         decoration: InputDecoration(
+  //             hintText: "Find a character",
+  //             border: InputBorder.none,
+  //             hintStyle: TextStyle(color: MyColors.myGrey, fontSize: 18)),
+  //         style: TextStyle(color: MyColors.myGrey, fontSize: 18),
+  //         onChanged: (searchedCharacter) {
+  //           addSearchedFOrItemsToSearchedList(searchedCharacter);
+  //         },
+  //       ),
+  //       InkWell(onTap: () => _stopSearching(), child: Icon(Icons.close)),
+  //     ],
+  //   );
+  // }
 
-  void addSearchedFOrItemsToSearchedList(searchedCharacter) {
-    searchedForCharacters = allCharacters
-        .where((character) =>
-            character.fullName!.toLowerCase().startsWith(searchedCharacter))
-        .toList();
+  // void addSearchedFOrItemsToSearchedList(searchedCharacter) {
+  //   searchedForCharacters = allCharacters
+  //       .where((character) =>
+  //           character.fullName!.toLowerCase().startsWith(searchedCharacter))
+  //       .toList();
 
-    setState(() {});
-  }
+  //   setState(() {});
+  // }
 
-  void _clearSearch() {
-    setState(() {
-      _searchTextController.clear();
-    });
-  }
+  // void _clearSearch() {
+  //   setState(() {
+  //     _searchTextController.clear();
+  //   });
+  // }
 
-  List<Widget> _buildAppBarActions() {
-    if (_isSearching) {
-      return [
-        IconButton(
-          onPressed: () {
-            _clearSearch();
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.clear, color: MyColors.myGrey),
-        ),
-      ];
-    } else {
-      return [
-        IconButton(
-          onPressed: _startSearch,
-          icon: Icon(
-            Icons.search,
-            color: MyColors.myGrey,
-          ),
-        ),
-      ];
-    }
-  }
+  // List<Widget> _buildAppBarActions() {
+  //   if (_isSearching) {
+  //     return [
+  //       IconButton(
+  //         onPressed: () {
+  //           _clearSearch();
+  //           Navigator.pop(context);
+  //         },
+  //         icon: Icon(Icons.clear, color: MyColors.myGrey),
+  //       ),
+  //     ];
+  //   } else {
+  //     return [
+  //       IconButton(
+  //         onPressed: _startSearch,
+  //         icon: Icon(
+  //           Icons.search,
+  //           color: MyColors.myGrey,
+  //         ),
+  //       ),
+  //     ];
+  //   }
+  // }
 
-  void _startSearch() {
-    ModalRoute.of(context)!
-        .addLocalHistoryEntry(LocalHistoryEntry(onRemove: _stopSearching));
+  // void _startSearch() {
+  //   ModalRoute.of(context)!
+  //       .addLocalHistoryEntry(LocalHistoryEntry(onRemove: _stopSearching));
 
-    setState(() {
-      _isSearching = true;
-    });
-  }
+  //   setState(() {
+  //     _isSearching = true;
+  //   });
+  // }
 
-  void _stopSearching() {
-    _clearSearch();
+  // void _stopSearching() {
+  //   _clearSearch();
 
-    setState(() {
-      _isSearching = false;
-    });
-  }
+  //   setState(() {
+  //     _isSearching = false;
+  //   });
+  // }
 
   Widget buildBlockWidget() {
     return BlocBuilder<CharactersCubit, CharactersState>(
@@ -190,7 +191,13 @@ class _CharactersScreenState extends State<CharactersScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [Text("Good morning,"), Text("data")],
-                ))
+                )),
+            IconButton(
+              onPressed: () {
+                Auth().signOut();
+              },
+              icon: Icon(color: Colors.white, Icons.logout),
+            )
           ],
         ),
       ),
@@ -241,7 +248,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            _isSearching ? _buildSearchField() : builtopWigdet(),
+            builtopWigdet(),
             buildheadWigdet(),
             Expanded(
               child: OfflineBuilder(

@@ -2,6 +2,8 @@ import 'package:block_breakingbad_flutter/presentation/screens/characters_screen
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'authentification/pages/auth_page.dart';
+import 'authentification/pages/home_page.dart';
 import 'business_logic/cubit/characters_cubit.dart';
 import 'constants/strings.dart';
 import 'data/models/characters.dart';
@@ -20,6 +22,8 @@ class AppRouter {
 
   Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case "/":
+        return MaterialPageRoute(builder: (_) => HomePage());
       case charactersScreens:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(

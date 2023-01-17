@@ -1,8 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../business_logic/cubit/characters_cubit.dart';
 import '../../constants/my_colors.dart';
 import '../../data/models/characters.dart';
 
@@ -22,7 +20,7 @@ class CharactersDetailsScreen extends StatelessWidget {
         centerTitle: true,
         title: Text(
           character.fullName!,
-          style: TextStyle(color: MyColors.myWhite),
+          style: const TextStyle(color: MyColors.myWhite),
         ),
         background: Hero(
           tag: character.id!,
@@ -43,7 +41,7 @@ class CharactersDetailsScreen extends StatelessWidget {
         children: [
           TextSpan(
             text: title,
-            style: TextStyle(
+            style: const TextStyle(
               color: MyColors.myWhite,
               fontWeight: FontWeight.bold,
               fontSize: 18,
@@ -51,7 +49,7 @@ class CharactersDetailsScreen extends StatelessWidget {
           ),
           TextSpan(
             text: value,
-            style: TextStyle(
+            style: const TextStyle(
               color: MyColors.myWhite,
               fontSize: 16,
             ),
