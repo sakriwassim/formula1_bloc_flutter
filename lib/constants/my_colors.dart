@@ -6,20 +6,23 @@ class MyColors {
   static const Color myWhite = Color(0xffE1E8EB);
 }
 
-var inputDecoration = InputDecoration(
-  focusedBorder: OutlineInputBorder(
-    borderRadius: BorderRadius.circular(10.0),
-    borderSide: BorderSide(
-      width: 3,
-      color: Colors.greenAccent,
+InputDecoration decoration(String text) {
+  return InputDecoration(
+    labelText: text,
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10.0),
+      borderSide: const BorderSide(
+        width: 3,
+        color: Colors.greenAccent,
+      ),
     ),
-  ),
-  enabledBorder: OutlineInputBorder(
-    borderRadius: BorderRadius.circular(10.0),
-    borderSide: BorderSide(width: 3, color: Color.fromARGB(31, 0, 0, 0)),
-  ),
-  
-);
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10.0),
+      borderSide:
+          const BorderSide(width: 3, color: Color.fromARGB(31, 0, 0, 0)),
+    ),
+  );
+}
 
 const gradientbackground = LinearGradient(
   begin: Alignment.topCenter,

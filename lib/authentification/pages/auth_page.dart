@@ -1,3 +1,4 @@
+import 'package:block_breakingbad_flutter/authentification/pages/widgets/headWidget.dart';
 import 'package:block_breakingbad_flutter/constants/my_colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -73,36 +74,7 @@ class _AuthPageState extends State<AuthPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  SvgPicture.asset("assets/icons/logo.svg"),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextSFProRounded(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w700,
-                    size: 25,
-                    title: 'Let’s Get Familiar',
-                  ),
-                  //const Text("let's Get Familiar"),
-                  const SizedBox(
-                    height: 20,
-                  ),
-
-                  TextSFProRounded(
-                    color: Color(0xFFF4E4B61),
-                    fontWeight: FontWeight.w400,
-                    size: 15,
-                    title: 'introduce Yourself',
-                  ),
-                ],
-              )),
+              const HeadWidget(),
               Container(
                 decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 255, 255, 255),
@@ -325,7 +297,10 @@ class _AuthPageState extends State<AuthPage> {
                           Expanded(
                             child: InkWell(
                               onTap: () {
-                                isLogin ? signIn() : signUp();
+                                final form = _formKey.currentState;
+                                if (form!.validate()) {
+                                  isLogin ? signIn() : signUp();
+                                }
                               },
 
                               // () => isLogin ? signIn() : signUp(),
@@ -377,24 +352,6 @@ class _AuthPageState extends State<AuthPage> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  InputDecoration decoration(String text) {
-    return InputDecoration(
-      labelText: text,
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10.0),
-        borderSide: const BorderSide(
-          width: 3,
-          color: Colors.greenAccent,
-        ),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10.0),
-        borderSide:
-            const BorderSide(width: 3, color: Color.fromARGB(31, 0, 0, 0)),
       ),
     );
   }
