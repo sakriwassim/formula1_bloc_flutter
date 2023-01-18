@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import '../../constants/my_colors.dart';
+import '../../constants/text_widget_text1.dart';
 import '../../data/models/characters.dart';
 
 class CharactersDetailsScreen extends StatelessWidget {
@@ -120,10 +121,10 @@ class CharactersDetailsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      characterInfo('FirstName : ', character.fullName!),
+                      characterInfo('Fullname : ', character.fullName!),
                       buildDivider(260),
-                      characterInfo('LastName : ', character.title!),
-                      buildDivider(260),
+                      characterInfo('Team : ', character.title!),
+                      buildDivider(300),
                       SizedBox(
                         height: 50,
                       ),

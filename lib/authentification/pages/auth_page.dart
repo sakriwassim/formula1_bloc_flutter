@@ -77,6 +77,9 @@ class _AuthPageState extends State<AuthPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const SizedBox(
+                      height: 50,
+                    ),
                     SvgPicture.asset("assets/icons/logo.svg"),
                     const SizedBox(
                       height: 20,

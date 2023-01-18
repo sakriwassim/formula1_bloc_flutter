@@ -9,18 +9,16 @@ class Character {
 
   Character.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    id = json['ranking'];
-
+    ranking = json['ranking'];
     fullName = json['fullName'];
     title = json['title'];
-
     imageUrl = json['imageUrl'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['id'] = this.ranking;
+    data['ranking'] = this.ranking;
     data['fullName'] = this.fullName;
     data['title'] = this.title;
     data['imageUrl'] = this.imageUrl;

@@ -1,6 +1,7 @@
 import 'package:block_breakingbad_flutter/constants/strings.dart';
 import 'package:flutter/material.dart';
 import '../../constants/my_colors.dart';
+import '../../constants/text_widget_text1.dart';
 import '../../data/models/characters.dart';
 import '../../size_config.dart';
 import 'circle_image.dart';
@@ -27,7 +28,7 @@ class CharacterItem extends StatelessWidget {
               bottomRight: Radius.circular(10)),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
+              color: Colors.grey.withOpacity(0.1),
               spreadRadius: 5,
               blurRadius: 7,
               offset: Offset(0, 3), // changes position of shadow
@@ -47,6 +48,18 @@ class CharacterItem extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: Center(
+                    child: TextSFProRounded(
+                      color: Color.fromARGB(255, 255, 0, 0),
+                      fontWeight: FontWeight.w500,
+                      size: 15,
+                      title: character.ranking.toString(),
+                    ),
+                  ),
+                ),
+                SizedBox(width: getProportionateScreenWidth(10)),
+                Expanded(
+                  flex: 1,
+                  child: Center(
                     child: CircleImage(
                       height: 60,
                       image: character.imageUrl.toString(),
@@ -56,7 +69,7 @@ class CharacterItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: getProportionateScreenWidth(10)),
+                SizedBox(width: getProportionateScreenWidth(20)),
                 Expanded(
                   flex: 4,
                   child: SizedBox(
@@ -69,12 +82,24 @@ class CharacterItem extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              character.fullName.toString(),
+                            TextSFProRounded(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontWeight: FontWeight.w700,
+                              size: 15,
+                              title: character.fullName.toString(),
                             ),
-                            Text(
-                              character.title.toString(),
+                            TextSFProRounded(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontWeight: FontWeight.w400,
+                              size: 15,
+                              title: character.title.toString(),
                             ),
+                            // Text(
+                            //   character.fullName.toString(),
+                            // ),
+                            // Text(
+                            //   character.title.toString(),
+                            // ),
                           ],
                         ),
                       ),

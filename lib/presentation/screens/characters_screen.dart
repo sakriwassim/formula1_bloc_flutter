@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
 import '../../authentification/controllers/auth_controller.dart';
+import '../../constants/text_widget_text1.dart';
 import '../../data/models/characters.dart';
 import '../widgets/character_item.dart';
 
@@ -166,11 +167,15 @@ class _CharactersScreenState extends State<CharactersScreen> {
           )),
       height: 70,
       child: Center(
-          child: Text(
-        "Top 10 ranking 2021",
-        style: TextStyle(color: MyColors.myGrey, fontSize: 25),
-        //style: ,
-      )),
+          child: TextSFProRounded(
+        color: Color.fromARGB(255, 255, 0, 0),
+        fontWeight: FontWeight.w700,
+        size: 20,
+        title: "Top 10 ranking 2021",
+      )
+      
+      
+      ),
     );
   }
 
@@ -190,7 +195,14 @@ class _CharactersScreenState extends State<CharactersScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [Text("Good morning,"), Text("data")],
+                  children: [
+                    TextSFProRounded(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontWeight: FontWeight.w500,
+                      size: 20,
+                      title: "Good morning,",
+                    ),
+                  ],
                 )),
             IconButton(
               onPressed: () {
