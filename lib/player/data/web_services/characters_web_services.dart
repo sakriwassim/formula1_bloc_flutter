@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 
 import '../../../constants/strings.dart';
-import '../models/characters.dart';
+
 
 class CharactersWebServices {
   late Dio dio;

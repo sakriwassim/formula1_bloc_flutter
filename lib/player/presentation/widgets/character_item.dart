@@ -1,8 +1,7 @@
 import 'package:block_breakingbad_flutter/constants/strings.dart';
 import 'package:flutter/material.dart';
+import '../../../data/models/characters.dart';
 import '../../../size_config.dart';
-import '../../constants/my_colors.dart';
-import '../../data/models/characters.dart';
 
 import 'circle_image.dart';
 
