@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../constants/small_button_style.dart';
+import '../../constants/text_widget_text1.dart';
 import '../controllers/auth_controller.dart';
 
 class AuthPage extends StatefulWidget {
@@ -80,11 +81,23 @@ class _AuthPageState extends State<AuthPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    const Text("let's Get Familiar"),
+                    TextSFProRounded(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w700,
+                      size: 25,
+                      title: 'Let’s Get Familiar',
+                    ),
+                    //const Text("let's Get Familiar"),
                     const SizedBox(
                       height: 20,
                     ),
-                    const Text("introduce Yourself")
+
+                    TextSFProRounded(
+                      color: Color(0xFFF4E4B61),
+                      fontWeight: FontWeight.w400,
+                      size: 15,
+                      title: 'introduce Yourself',
+                    ),
                   ],
                 )),
             Expanded(
@@ -314,13 +327,20 @@ class _AuthPageState extends State<AuthPage> {
                         Row(
                           children: [
                             Expanded(
-                              child: Button(
-                                gradientbackground: gradientbackground,
-                                fontSize: 25,
-                                fontWeight: FontWeight.w400,
-                                height: 50,
-                                text: 'Next',
-                                textcolor: Colors.white,
+                              child: InkWell(
+                                onTap: () {
+                                  isLogin ? signIn() : signUp();
+                                },
+
+                                // () => isLogin ? signIn() : signUp(),
+                                child: Button(
+                                  gradientbackground: gradientbackground,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w400,
+                                  height: 50,
+                                  text: 'Next',
+                                  textcolor: Colors.white,
+                                ),
                               ),
                             ),
                           ],

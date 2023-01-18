@@ -36,3 +36,14 @@ flutter:
     - assets/
     - assets/images/playerimages/
     - assets/icons/
+  
+  fonts:
+    - family: SFProRounded
+      fonts:
+        - asset: fonts/SF-Pro-Rounded-Medium.otf
+          weight: 700 
+        - asset: fonts/SF-Pro-Rounded-Medium.otf
+          weight: 400 
+        - asset: fonts/SF-Pro-Rounded-Medium.otf
+          weight: 300 
+
